@@ -61,21 +61,21 @@ let questions = [
 const scorePoints = 100;
 const maxQuestions = 5;
 
-startGame() => {
+startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions = [...questions];
     getNewQuestion();
 }
 
-getNewQuestion() => {
+getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter > maxQuestions) {
         localStorage.setItem("mostRecentScore", score)
         return window.location.assign("./end.html")
     }
     questionCounter++;
-    progressText.innerText = `Question ${questionCounter} of ${maxQuestions}` ;
-    progressBarFull.style.width = `${(questionCounter/maxQuestions) * 100}%`;
+    progressText.innerText = `Question ${questionCounter} of ${maxQuestions}`;
+    progressBarFull.style.width = `${(questionCounter/maxQuestions)*100}%`;
 
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length);
 
@@ -91,3 +91,34 @@ getNewQuestion() => {
 
     acceptingAnswers = true;
 }
+
+choices.forEach(choice => {
+  choice.addEventListener("click", e => {
+    if (!acceptingAnswers) return
+
+    acceptingAnswers = false
+    const selectedChoice = e.target
+    const selectedAnswer = selectedChoice.dataset["number"]
+
+    // apply green or red style if the answer is correct or incorrect //
+    let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+    if (classToApply === "correct") {
+      incrementScore(scorePoints)
+    }
+
+    selectedChoice.parentElement.classList.add(classToApply);
+
+    setTimeout(() => {
+      selectedChoice.parentElement.classList.remove(classToApply);
+      getNewQuestion()
+    }, 1000)
+  });
+});
+
+incrementScore = num => {
+  score += num
+  scoreText.innerText = score
+};
+
+startGame();
