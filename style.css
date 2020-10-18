@@ -110,4 +110,25 @@ input {
   font-size: 1.8rem;
   border: none;
   box-shadow: 0 0.4rem 1.4rem 0 #000066;
+  border-radius: 5px;
+}
+
+input::placeholder {
+  color: lightgrey;
+}
+
+#username {
+  margin-bottom: 3rem;
+  width: 100%;
+  outline: none;
+}
+
+#end-text {
+  font-size: 2.4rem;
+  color: white;
+  text-align: center;
+}
+
+#saveScoreBtn {
+  border: none;
 }

@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AeroQuiz</title>
+    <title>High Scores</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="highScores.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.0/css/all.css"
@@ -14,13 +15,14 @@
   </head>
   <body>
     <div class="container">
-      <div id="home" class="flex-column flex-center">
-        <h1>Are you ready?</h1>
-        <a href="./game.html" class="btn">Play</a>
-        <a href="./highscores.html" class="btn" id="highscore-btn"
-          >High Scores<i class="far fa-paper-plane"></i
+      <div id="highScores" class="flex-center flex-column">
+        <h1 id="finalScore">Leaderboard</h1>
+        <ul id="highScoresList"></ul>
+        <a href="./index.html" class="btn"
+          >Go to main menu<i class="far fa-paper-plane"></i
         ></a>
       </div>
     </div>
+    <script src="./highScores.js"></script>
   </body>
 </html>
